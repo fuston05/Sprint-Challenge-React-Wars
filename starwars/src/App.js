@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import './App.css';
 
+// STYLED COMPONENTS
 const Main = styled.div`
    display: flex;
    flex-direction: column;
@@ -14,17 +15,24 @@ const Main = styled.div`
    padding: 1%;
 `;
 
-const CardHolder= styled.div`
+const CardHolder = styled.div`
    width: 100%;
    display: flex;
    justify-content: center;
-   align-items: center;
+   align-items: flex-start;
    flex-wrap: wrap;
 `;
 
+const StyledH1= styled.h1`
+   font-size: 3rem;
+   color: rgba(252, 187, 115, 1);
+   text-shadow: 2px 2px #333;
+`;
+ // /////////////////////
+ 
 const App = () => {
-
-   const [ data, setData ]= useState([]);
+   // STATE //
+   const [data, setData] = useState([]);
 
 
    // Try to think through what state you'll need for this app before starting. Then build out
@@ -38,30 +46,26 @@ const App = () => {
       axios
          .get('https://swapi.co/api/people')
          .then(res => {
-            // console.log(res.data.results);// array
+            console.log('data: ',res.data.results);// array
             const charData = res.data.results;
             setData(charData);
-            
          })
          .catch(err => {
-            console.log("Error: ", err)
+            console.log('Error: ', err);
          })
-   },[])
-
+   }, []);
 
    return (
       <Main className="App">
-         <h1 className="Header">React Wars</h1>
+         <StyledH1>React Wars</StyledH1>
          <CardHolder className='cardHolder'>
-            
+
             {
                data.map((ele, i) => {
                   // console.log('ele: ', ele);
-                  return <Card name= {ele.name} key= {i} />
-               } )
-            }   
-         
-              
+                  return <Card ships= {ele.starships.length} vehicles= {ele.vehicles.length} films= {ele.films.length} gender={ele.gender} skin= {ele.skin_color} birth= {ele.birth_year} mass= {ele.mass} eyes= {ele.eye_color} hair= {ele.hair_color} height= {ele.height+'"'} name={ele.name} key={i} />
+               })
+            }
          </CardHolder>
 
       </Main>
