@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
+React JS is a JS library for creating user interfaces. It tries to solve the problems of managing large scale applications and the data associated with it. Through the use of state and props it helps accomplish this. Also, the isolated components plays a big part in this by compartmentalizing data to each component.
+
 - [ ] What does it mean to _think_ in react?
+
+I believe that to 'think in React' means to adopt the mindset of react. In other words to start thinking in terms of components and compartmentalization of data and functionality.
 
 - [ ] Describe state.
 
+State in React is a way to store and pass data. Components will re-render when state changes to reflect the changes made to the state of the application.
+
 - [ ] Describe props.
 
+React 'props' are basically just parameters we use in our component functions to pass data around form one component to the next.
+
 - [ ] What are side effects, and how do you sync effects in a React component to state or prop changes?
+
+React 'sideEffects' are just that; side effects. They are usually unintended as a result of something we do in our applications. Such as using a setInterval timer. The side effect is that the interval will keep being re-created and stack on one another causing undesirable effects. You can control this effect by wrapping the interval function or axios call inside the 'useEffect' hook. You can sync this to state or other props by adding them to the dependency array parameter for the useEffect hook.
 
 ## Project Set Up
 
