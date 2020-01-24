@@ -9,6 +9,11 @@ const PaginationCont= styled.div`
 
 const PageNum= styled.span`
   padding: 2px;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: dodgerBlue;
   border: 1px solid #000;
   font-size: 1rem;
@@ -20,16 +25,15 @@ const PageNum= styled.span`
 `;
 
 const Pagination = (props) => {
-  console.log('pages form pagination', props.pages);
   const numPages= [];
-  for (let i = 0; i < props.pages; i++) {
+  for (let i = 1; i <= props.pages; i++) {
     numPages.push(i);
   }
   return (
     <PaginationCont className= 'paginationCont'>
       {
         numPages.map((el, ind) => {
-          return <PageNum value={el} key= {ind} onClick= { (e)=> {props.func(e)} } className= 'pageNum'>{el}</PageNum>
+          return <PageNum key= {ind} onClick= { (e)=> {props.func(el)} } className= 'pageNum'>{el}</PageNum>
         })
       }
     </PaginationCont>

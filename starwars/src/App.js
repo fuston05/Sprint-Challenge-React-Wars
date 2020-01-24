@@ -34,10 +34,10 @@ const StyledH1 = styled.h1`
 const App = () => {
   // STATE //
   const [data, setData] = useState([]);
-  const [itemsPerPage, setItemsPerPage] = useState(2);
-  const [pageNum, setPageNum]= useState(1);
-  const [currPageData, setCurrPageData]= useState([]);
-  const [totalPages, setTotalPages]= useState();
+  const [itemsPerPage] = useState(2);
+  const [pageNum, setPageNum] = useState(1);
+  const [currPageData, setCurrPageData] = useState([]);
+  const [totalPages, setTotalPages] = useState();
 
 
   // Try to think through what state you'll need for this app before starting. Then build out
@@ -51,25 +51,27 @@ const App = () => {
     axios
       .get('https://swapi.co/api/people')
       .then(res => {
-        console.log('data: ', res.data.results);// array
         const charData = res.data.results;
         setData(charData);
-        setCurrPageData(charData.slice( 
-          (pageNum * itemsPerPage)-itemsPerPage, (pageNum * itemsPerPage)
-          )); 
-          setTotalPages(Math.ceil(charData.length/itemsPerPage));
+        setTotalPages(Math.ceil(charData.length / itemsPerPage));
+        setCurrPageData(charData.slice(
+          (pageNum * itemsPerPage) - itemsPerPage, (pageNum * itemsPerPage)
+        ));
       })
       .catch(err => {
         console.log('Error: ', err);
       })
   }, []);
 
-  function changePage(e){
-    setPageNum(e.target.value); 
+  useEffect(() => {
+    setCurrPageData(data.slice(
+      (pageNum * itemsPerPage) - itemsPerPage, (pageNum * itemsPerPage)
+    ));
+  }, [pageNum])
+
+  function changePage(el) {
+    setPageNum(el);
   }
-        
-  console.log('curData: ', currPageData);
-  console.log('total Pages: ', totalPages);
 
   return (
     <Main className="App">
@@ -77,14 +79,14 @@ const App = () => {
       <CardHolder className='cardHolder'>
 
         {
-          data.map((ele, i) => {
+          currPageData.map((ele, i) => {
             // console.log('ele: ', ele);
             return <Card ships={ele.starships.length} vehicles={ele.vehicles.length} films={ele.films.length} gender={ele.gender} skin={ele.skin_color} birth={ele.birth_year} mass={ele.mass} eyes={ele.eye_color} hair={ele.hair_color} height={ele.height + '"'} name={ele.name} key={i} />
           })
         }
-        
+
       </CardHolder>
-      <Pagination pages={totalPages} func= {changePage} />
+      <Pagination pages={totalPages} func={changePage} />
     </Main>
   );
 }
