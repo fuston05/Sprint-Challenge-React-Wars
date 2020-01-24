@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const CardDiv = styled.div`
    display: flex;
    flex-direction: column;
-   height: 30%;
    width: 35%;
    padding: 2%;
    margin: 2% 4%;
@@ -24,6 +23,7 @@ const StyledH3 = styled.h3`
 const StyledP = styled.p`
    color: #555;
    font-size: 1rem;
+   margin: 1% 0;
 `;
 // ////////////////////////
 

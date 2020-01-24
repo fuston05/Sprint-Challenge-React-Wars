@@ -12,12 +12,14 @@ const Main = styled.div`
    justify-content: flex-start;
    align-items: center;
    width: 95%;
+   height: 100vh;
    margin: 0 auto 0 auto;
    padding: 1%;
 `;
 
 const CardHolder = styled.div`
    width: 100%;
+   height: 100%;
    display: flex;
    justify-content: center;
    align-items: flex-start;
