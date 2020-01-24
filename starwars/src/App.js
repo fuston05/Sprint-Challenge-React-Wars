@@ -65,7 +65,7 @@ const App = () => {
   }, []);
 
   function changePage(e){
-    setPageNum(e.target.value);
+    setPageNum(e.target.value); 
   }
         
   console.log('curData: ', currPageData);
@@ -77,7 +77,7 @@ const App = () => {
       <CardHolder className='cardHolder'>
 
         {
-          currPageData.map((ele, i) => {
+          data.map((ele, i) => {
             // console.log('ele: ', ele);
             return <Card ships={ele.starships.length} vehicles={ele.vehicles.length} films={ele.films.length} gender={ele.gender} skin={ele.skin_color} birth={ele.birth_year} mass={ele.mass} eyes={ele.eye_color} hair={ele.hair_color} height={ele.height + '"'} name={ele.name} key={i} />
           })
