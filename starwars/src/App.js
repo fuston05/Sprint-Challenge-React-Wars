@@ -7,36 +7,36 @@ import './App.css';
 
 // STYLED COMPONENTS
 const Main = styled.div`
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   align-items: center;
-   width: 95%;
-   height: 100vh;
-   margin: 0 auto 0 auto;
-   padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 95%;
+  height: 100vh;
+  margin: 0 auto 0 auto;
+  padding: 1%;
 `;
 
 const CardHolder = styled.div`
-   width: 100%;
-   height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: flex-start;
-   flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
 `;
 
 const StyledH1 = styled.h1`
-   font-size: 3rem;
-   color: rgba(252, 187, 115, 1);
-   text-shadow: 2px 2px #333;
+  font-size: 3rem;
+  color: rgba(252, 187, 115, 1);
+  text-shadow: 2px 2px #333;
 `;
 // /////////////////////
 
 const App = () => {
   // STATE //
   const [data, setData] = useState([]);
-  const [itemsPerPage] = useState(2);
+  const [itemsPerPage] = useState(3);
   const [pageNum, setPageNum] = useState(1);
   const [currPageData, setCurrPageData] = useState([]);
   const [totalPages, setTotalPages] = useState();
@@ -59,6 +59,8 @@ const App = () => {
         setCurrPageData(charData.slice(
           (pageNum * itemsPerPage) - itemsPerPage, (pageNum * itemsPerPage)
         ));
+        // set initial active state for pagination page 1
+        document.querySelector('.pageNum').classList.add('active');
       })
       .catch(err => {
         console.log('Error: ', err);
@@ -69,10 +71,19 @@ const App = () => {
     setCurrPageData(data.slice(
       (pageNum * itemsPerPage) - itemsPerPage, (pageNum * itemsPerPage)
     ));
+
   }, [pageNum])
 
-  function changePage(el) {
+  async function changePage(el, ind) {
     setPageNum(el);
+    let curPagination = document.querySelectorAll('.pageNum');
+    //clear prev active class
+    curPagination.forEach((ele) => {
+      ele.classList.remove('active');
+    });
+    // now we set active class
+    curPagination[ind.ind].classList.add('active');
+
   }
 
   return (

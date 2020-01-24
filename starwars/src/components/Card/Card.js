@@ -3,27 +3,27 @@ import styled from 'styled-components';
 
 // STYLED COMPONENTS
 const CardDiv = styled.div`
-   display: flex;
-   flex-direction: column;
-   width: 35%;
-   padding: 2%;
-   margin: 2% 4%;
-   border-radius: 5px;
-   background-color: rgba(115, 190, 252, 0.9);
-   border: 1px solid #999;
-   box-shadow: 2px 2px 5px #333;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 2%;
+  margin: 2% 4%;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #aaa;
+  box-shadow: 2px 2px 5px #333;
 `;
 
 const StyledH3 = styled.h3`
-   color: #333;
-   font-size: 1.6rem;
-   text-decoration: underline;
+  color: #666;
+  font-size: 1.4rem;
+  text-decoration: underline;
 `;
 
 const StyledP = styled.p`
-   color: #555;
-   font-size: 1rem;
-   margin: 1% 0;
+  color: #aaa;
+  font-size: 1rem;
+  margin: 1% 0;
 `;
 // ////////////////////////
 
